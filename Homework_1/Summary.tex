@@ -1,0 +1,32 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{CJKutf8}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\begin{document}
+
+\begin{CJK}{UTF8}{gbsn}
+
+\section{作业总结一，2022年6月22日}
+
+当前已经尝试了以下几种办法：
+\begin{enumerate}
+	\item feature selection，即选择和output有关的feature进行训练
+	\item 修改 network structure
+	\begin{enumerate}
+		\item 加深network的深度
+		\item 加入batch normalization的layer
+		\item 该用sigmoid作为activation function
+	\end{enumerate}
+	\item 修改 optimizer，尝试 Adam
+\end{enumerate}
+
+目前而言，只有feature selection这一种方法有效果。
+
+feature selection可以通过pandas里的``corr''这个function来计算出Pearson correlation，然后通过heatmap显示出来。demo code放在附件里。
+
+\end{CJK}
+
+\end{document}
