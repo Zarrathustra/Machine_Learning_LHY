@@ -29,25 +29,7 @@ urllib.request.install_opener(opener)
 # Set device
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-# Mirror of PyTroch Dataset
-# import torch_dataset_mirror
-import torchvision.datasets.mnist as mnist
+# data loader
+from data_loader import train_loader, test_loader
 
-# Training dataset
-train_loader = torch.utils.data.DataLoader(mnist.MNIST(root = '.', \
-                                                       train = True, \
-                                                       download = True, \
-                                                       transform = transforms.Compose([transforms.ToTensor(), \
-                                                                                       transforms.Normalize((0.1307,), (0.3081,))])), \
-                                           batch_size = 64, \
-                                           shuffle = True, \
-                                           num_workers = 4)
-
-"""
-# Test dataset
-test_loader = torch.utils.data.DataLoader(
-    datasets.MNIST(root='.', train=False, transform=transforms.Compose([
-        transforms.ToTensor(),
-        transforms.Normalize((0.1307,), (0.3081,))
-    ])), batch_size=64, shuffle=True, num_workers=4)
-"""
+# net
