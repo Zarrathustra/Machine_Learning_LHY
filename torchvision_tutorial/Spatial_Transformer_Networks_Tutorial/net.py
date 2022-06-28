@@ -36,6 +36,9 @@ class Net(nn.Module):
                                     nn.Linear(32, 3 * 2))
         # ouput -> affine transform, a 3x2 matrix -> affine transform, 6 parameters
         # Initialize the weights/bias with identity transformation
+        # IMPORTANT FOR TRAINING
+        # START WITH IDENTITY
+        # GOOD START POINT
         self.fc_loc[2].weight.data.zero_()
         self.fc_loc[2].bias.data.copy_(torch.tensor([1, 0, 0, 0, 1, 0], dtype=torch.float))
 

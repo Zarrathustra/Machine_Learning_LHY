@@ -90,7 +90,7 @@ for epoch in range(1, 20 + 1):
     train(epoch)
 
     # saving model
-    torch.save(my_net.state_dict(), './model/model_epoch_{:3d}.ckpt'.format(epoch))
+    torch.save(model.state_dict(), './model/model_epoch_{:03d}.ckpt'.format(epoch))
 
     # epoch test
     test()
