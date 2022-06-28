@@ -75,7 +75,7 @@ def test():
             test_loss += F.nll_loss(output, target, size_average=False).item()
 
             # get the index of the max log-probability
-            pred = output.max(1, keepdim=True)[1]
+            pred = output.max(1, keepdim = True)[1]
             correct += pred.eq(target.view_as(pred)).sum().item()
 
         test_loss /= len(test_loader.dataset)
@@ -86,5 +86,11 @@ def test():
                                                                                      100. * correct / len(test_loader.dataset)))
 for epoch in range(1, 20 + 1):
 
+    # epoch training
     train(epoch)
+
+    # saving model
+    torch.save(my_net.state_dict(), './model/model_epoch_{:3d}.ckpt'.format(epoch))
+
+    # epoch test
     test()
