@@ -10,6 +10,8 @@ import torch
 from torchvision import datasets, transforms
 import torchvision.datasets.mnist as mnist
 
+num_workers = 0
+
 # Training dataset
 train_loader = torch.utils.data.DataLoader(mnist.MNIST(root = '.', \
                                                        train = True, \
@@ -18,7 +20,7 @@ train_loader = torch.utils.data.DataLoader(mnist.MNIST(root = '.', \
                                                                                        transforms.Normalize((0.1307,), (0.3081,))])), \
                                            batch_size = 64, \
                                            shuffle = True, \
-                                           num_workers = 4)
+                                           num_workers = num_workers)
 
 # Test dataset
 test_loader = torch.utils.data.DataLoader(mnist.MNIST(root = '.', \
@@ -27,4 +29,4 @@ test_loader = torch.utils.data.DataLoader(mnist.MNIST(root = '.', \
                                                                                       transforms.Normalize((0.1307,), (0.3081,))])), \
                                           batch_size = 64, \
                                           shuffle = True, \
-                                          num_workers = 4)
+                                          num_workers = num_workers)

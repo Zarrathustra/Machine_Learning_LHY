@@ -2,6 +2,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+__all__ = ['Net']
+
 class Net(nn.Module):
 
     def __init__(self):
@@ -33,7 +35,9 @@ class Net(nn.Module):
                                     nn.ReLU(True), \
                                     nn.Linear(32, 3 * 2))
         # ouput -> affine transform, a 3x2 matrix -> affine transform, 6 parameters
-
+        # Initialize the weights/bias with identity transformation
+        self.fc_loc[2].weight.data.zero_()
+        self.fc_loc[2].bias.data.copy_(torch.tensor([1, 0, 0, 0, 1, 0], dtype=torch.float))
 
     def spatial_transform_network(self, x):
 
@@ -54,7 +58,7 @@ class Net(nn.Module):
 
         x = self.spatial_transform_network(x)
 
-        print(x.shape)
+        # print(x.shape)
 
         # Perform the usual forward pass
 
