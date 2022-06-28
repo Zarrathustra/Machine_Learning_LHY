@@ -14,8 +14,8 @@ import torchvision
 from torchvision import datasets, transforms
 
 # Matplotlib
-import matplotlib.pyplot as plt
-plt.ion()   # interactive mode
+# import matplotlib.pyplot as plt
+# plt.ion()   # interactive mode
 
 # Numpy
 import numpy as np
@@ -58,6 +58,7 @@ def train(epoch):
                                                                            batch_idx * len(data), len(train_loader.dataset), \
                                                                            100. * batch_idx / len(train_loader), \
                                                                            loss.item()))
+
 def test():
 
     with torch.no_grad():
@@ -84,13 +85,16 @@ def test():
                                                                                      correct, \
                                                                                      len(test_loader.dataset), \
                                                                                      100. * correct / len(test_loader.dataset)))
-for epoch in range(1, 20 + 1):
 
-    # epoch training
-    train(epoch)
+if __name__ == '__main__':
 
-    # saving model
-    torch.save(model.state_dict(), './model/model_epoch_{:03d}.ckpt'.format(epoch))
+    for epoch in range(1, 20 + 1):
 
-    # epoch test
-    test()
+        # epoch training
+        train(epoch)
+
+        # saving model
+        torch.save(model.state_dict(), './model/model_epoch_{:03d}.ckpt'.format(epoch))
+
+        # epoch test
+        test()
